@@ -2,6 +2,9 @@ import { formatDate, formatAmount } from "../../utils/format"
 import "./BankActivity.css"
 
 export default function BankActivity({ transactions = [], transfers = [] }) {
+  
+  console.log('t: ',transactions);
+
   return (
     <div className="BankActivity">
       <h2>Transactions</h2>

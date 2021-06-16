@@ -10,13 +10,25 @@ export default function App() {
 
   const [isFetching, setIsFetching] = useState(false)
 
-  let transactions = {}
+  const [transactions, setTransactions] = useState([])
+  
+
+  
   useEffect( () => {
     const fetchData = (async () => {
-      transactions = await axios.get('http://localhost:3001/bank/transactions')
-      transactions = await transactions.data
+
+      const t = await axios.get('http://localhost:3001/bank/transactions')
+      // t = await 
+      let tt = await t.data.transactions
+      console.log('tt: ',tt);
+      setTransactions(tt)
+      
+
       console.log('gettrans: ' , transactions);
-    })()
+
+    })
+    fetchData()
+
   }, [])
 
   async function addTrans(description, category, amount){
@@ -46,7 +58,7 @@ export default function App() {
     addTrans,
     transactions
   }
-  console.log(props);
+  console.log('props: ',props);
 
   return (
     <div className="App">
