@@ -4,6 +4,10 @@ import "./App.css"
 import { useState,useEffect } from "react"
 import axios from 'axios'
 
+import TransactionDetail from '../TransactionDetail/TransactionDetail'
+
+import { BrowserRouter, Switch, Route, Link, Routes } from "react-router-dom"
+
 export default function App() {
 
   const [isFetching, setIsFetching] = useState(false)
@@ -40,10 +44,18 @@ export default function App() {
 
 
   return (
-    <div className="App">
-      <Navbar />
-      <Home />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />}  />
+            <Route path="transactions/:transactionId" element={<TransactionDetail />} />
+          </Routes>
+
+      </div>
+    </BrowserRouter> 
+    
   )
 }
 

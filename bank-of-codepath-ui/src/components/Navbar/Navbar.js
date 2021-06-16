@@ -6,7 +6,7 @@ import "./Navbar.css"
 
 export default function Navbar() {
   return (
-    <BrowserRouter>
+
       <nav className="Navbar">
         <Link className="logo" to="/">
           <img src={codepath} alt="logo" />
@@ -30,6 +30,6 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-    </BrowserRouter>
+
   )
 }
