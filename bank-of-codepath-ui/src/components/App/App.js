@@ -22,14 +22,14 @@ export default function App() {
         
         try {
           let axTransactions = await axios.get('http://localhost:3001/bank/transactions')
-          axTransactions = await axTransactions.data
+          axTransactions = await axTransactions.data.transactions
           let axTransfers = await axios.get('http://localhost:3001/bank/transfers')
-          axTransfers = await axTransfers.data
+          axTransfers = await axTransfers.data.transfers
 
           setTransactions(axTransactions)
           setTransfers(axTransfers)
 
-          console.log(axTransactions);
+          console.log('axtrans: ',axTransactions);
 
         }catch(err){
           setError(err)
@@ -42,6 +42,10 @@ export default function App() {
   , [])
 
 
+  const props = {
+    transactions,
+    transfers
+  }
 
   return (
     <BrowserRouter>
@@ -49,8 +53,8 @@ export default function App() {
 
           <Navbar />
           <Routes>
-            <Route path="/" element={<Home />}  />
-            <Route path="transactions/:transactionId" element={<TransactionDetail />} />
+            <Route path="/transactions/:transactionId" element={<TransactionDetail />} />
+            <Route path="/" element={<Home />} {...props} />
           </Routes>
 
       </div>

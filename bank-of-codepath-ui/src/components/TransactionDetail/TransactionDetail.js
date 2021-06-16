@@ -1,11 +1,43 @@
 import { formatAmount, formatDate } from "../../utils/format"
 import "./TransactionDetail.css"
 
+import { useParams } from "react-router"
+import { useState,useEffect } from "react"
+import axios from 'axios'
+
+
+
 export default function TransactionDetail() {
-  const transactionId = null // replace this
-  const transaction = {} // replace this
-  const isLoading = false // replace this
-  const error = false // replace this
+
+  const {transactionId} = useParams()
+
+  console.log('transactionId: ',transactionId);
+
+
+  const [transaction, setTransaction] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    const func = async () => {
+      setIsLoading(true)
+
+
+      try{
+        let axTransfers = await axios.get('http://localhost:3001/bank/transactions/' + transactionId)
+        setTransaction(await axTransfers.data)
+        
+        console.log('transsss:, ', transaction);
+
+      }catch(err){
+        setError(true)
+      }
+
+      
+      setIsLoading(false)
+    }
+    func()
+  }, transactionId)
 
   const renderTransactionContent = () => {
     if (isLoading) return <h1>Loading...</h1>
