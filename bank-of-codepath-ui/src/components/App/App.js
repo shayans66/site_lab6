@@ -46,6 +46,7 @@ export default function App() {
     transactions,
     transfers
   }
+  console.log(props);
 
   return (
     <BrowserRouter>
@@ -54,7 +55,11 @@ export default function App() {
           <Navbar />
           <Routes>
             <Route path="/transactions/:transactionId" element={<TransactionDetail />} />
-            <Route path="/" element={<Home />} {...props} />
+            {/* <Route path="/" element={<Home />} render={() => (<h3>hiiiii</h3>)} /> */}
+            <Home {...props} />
+
+
+            {/* <Route path="/" element={<Home />} transactions={transactions} transfers={transfers} /> */}
           </Routes>
 
       </div>
