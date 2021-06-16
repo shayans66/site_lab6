@@ -3,11 +3,21 @@ import Home from "../Home/Home"
 import "./App.css"
 import axios from 'axios'
 
-import { useState } from "react"
+
+import { useState, useEffect } from "react"
 
 export default function App() {
 
   const [isFetching, setIsFetching] = useState(false)
+
+  let transactions = {}
+  useEffect( () => {
+    const fetchData = (async () => {
+      transactions = await axios.get('http://localhost:3001/bank/transactions')
+      transactions = await transactions.data
+      console.log('gettrans: ' , transactions);
+    })()
+  }, [])
 
   async function addTrans(description, category, amount){
     let res
@@ -30,9 +40,13 @@ export default function App() {
     }
   }
 
+
+
   const props = {
-    addTrans
+    addTrans,
+    transactions
   }
+  console.log(props);
 
   return (
     <div className="App">
