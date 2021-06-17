@@ -4,7 +4,7 @@ import codepath from "../../assets/codepath.svg"
 import avatar from "../../assets/avatar.png"
 import "./Navbar.css"
 
-export default function Navbar({ filterInputValue }) {
+export default function Navbar({ filterInputValue, setFilterInputValue }) {
   return (
 
       <nav className="Navbar">
@@ -13,7 +13,7 @@ export default function Navbar({ filterInputValue }) {
         </Link>
 
         <div className="search">
-          <FilterInput filterInputValue={filterInputValue} />
+          <FilterInput filterInputValue={filterInputValue} setFilterInputValue={setFilterInputValue} />
         </div>
 
         <div className="user">

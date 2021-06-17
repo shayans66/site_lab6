@@ -53,6 +53,7 @@ export default function App() {
     isFetching,
     error,
     filterInputValue,
+    setFilterInputValue,
     transactions,
     transfers,
     addTransaction
