@@ -10,11 +10,15 @@ import { BrowserRouter, Switch, Route, Link, Routes } from "react-router-dom"
 
 export default function App() {
 
-  const [isFetching, setIsFetching] = useState(false)
+  const [isFetching, setIsFetching] = useState(true)
   const [error, setError] = useState('')
   const [filterInputValue, setFilter] = useState('')
   const [transactions, setTransactions] = useState([])
   const [transfers, setTransfers] = useState([])
+
+  function addTransaction(newTrans){
+    setTransactions((oldT) => ({...oldT, newTrans}))
+  }
 
   useEffect(
     () => {
@@ -44,7 +48,13 @@ export default function App() {
 
   const props = {
     transactions,
-    transfers
+    transfers,
+    isFetching,
+    error,
+    filterInputValue,
+    transactions,
+    transfers,
+    addTransaction
   }
   console.log('props: ',props);
 

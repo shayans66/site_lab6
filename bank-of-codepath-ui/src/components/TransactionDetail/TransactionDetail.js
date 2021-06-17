@@ -24,7 +24,7 @@ export default function TransactionDetail() {
 
 
       try{
-        let axTransfers = await axios.get('http://localhost:3001/bank/transactions/' + transactionId)
+        let axTransfers = await axios.get('https://localhost:3001/bank/transactions/' + transactionId)
         setTransaction(await axTransfers.data)
         
         console.log('transsss:, ', transaction);

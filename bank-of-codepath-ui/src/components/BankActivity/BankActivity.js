@@ -2,10 +2,12 @@ import { formatDate, formatAmount } from "../../utils/format"
 import "./BankActivity.css"
 import { Link } from "react-router-dom"
 
+import { useRef, useEffect, useState } from "react";
 
-
-export default function BankActivity({ transactions = [], transfers = [] }) {
+export default function BankActivity({ transactions = [], transfers = [], isFetching }) {
   console.log('traaaans: ',transactions);
+
+
   return (
     <div className="BankActivity">
       <h2>Transactions</h2>
@@ -16,28 +18,35 @@ export default function BankActivity({ transactions = [], transfers = [] }) {
           <span className="col x2">Amount</span>
           <span className="col x15">Date</span>
         </div>
-        {transactions.map((transaction) => {
+          
+          <p style={{display: (isFetching) ? 'block' : 'none'}}>I'm fetching</p>
+        {/* <p style={{display: 'none'}} ref={fetching}>I'm fetching</p> */}
+        {/* <p style={{display: `${showLoading} ? 'block' : 'none` }} ref={fetching}>I'm fetching</p> */}
 
-          // console.log('TRANS: ',transactions);
-          return (
-            <Link to={"/transactions/" + transaction.id}>
-              <div className="table-row" key={transaction.id}>
-            <span className="col x4">
-                  <Arrow amount={transaction.amount} />
-                  {transaction.description}
-                </span>
-                <span className="col x2">{transaction.category}</span>
-                <span className="col x2">{formatAmount(transaction.amount)}</span>
-                <span className="col x15">{formatDate(transaction.postedAt)}</span>
+        {
+          transactions.map((transaction) => {
+
+            // console.log('TRANS: ',transactions);
+            return (
+              <Link key={transaction.id} to={"/transactions/" + transaction.id}>
+                <div className="table-row" key={transaction.id}>
+              <span className="col x4">
+                    <Arrow amount={transaction.amount} />
+                    {transaction.description}
+                  </span>
+                  <span className="col x2">{transaction.category}</span>
+                  <span className="col x2">{formatAmount(transaction.amount)}</span>
+                  <span className="col x15">{formatDate(transaction.postedAt)}</span>
+
+                  
 
                 
-
-              
-              
-            </div>
-            </Link>
-          )
-        })}
+                
+              </div>
+              </Link>
+            )
+          })
+        }
       </div>
 
       <h2>Transfers</h2>
