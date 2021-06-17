@@ -18,21 +18,24 @@ export default function BankActivity({ transactions = [], transfers = [] }) {
         </div>
         {transactions.map((transaction) => {
 
-          console.log('TRANS: ',transaction);
+          // console.log('TRANS: ',transactions);
           return (
-            <div className="table-row" key={transaction.id}>
-              <Link to={"/transactions/" + transaction.id}>
+            <Link to={"/transactions/" + transaction.id}>
+              <div className="table-row" key={transaction.id}>
+            <span className="col x4">
+                  <Arrow amount={transaction.amount} />
+                  {transaction.description}
+                </span>
+                <span className="col x2">{transaction.category}</span>
+                <span className="col x2">{formatAmount(transaction.amount)}</span>
+                <span className="col x15">{formatDate(transaction.postedAt)}</span>
 
-              <span className="col x4">
-                <Arrow amount={transaction.amount} />
-                {transaction.description}
-              </span>
-              <span className="col x2">{transaction.category}</span>
-              <span className="col x2">{formatAmount(transaction.amount)}</span>
-              <span className="col x15">{formatDate(transaction.postedAt)}</span>
+                
 
-              </Link>
+              
+              
             </div>
+            </Link>
           )
         })}
       </div>

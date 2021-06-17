@@ -13,8 +13,8 @@ export default function App() {
   const [isFetching, setIsFetching] = useState(false)
   const [error, setError] = useState('')
   const [filterInputValue, setFilter] = useState('')
-  const [transactions, setTransactions] = useState('')
-  const [transfers, setTransfers] = useState('')
+  const [transactions, setTransactions] = useState([])
+  const [transfers, setTransfers] = useState([])
 
   useEffect(
     () => {
@@ -46,7 +46,9 @@ export default function App() {
     transactions,
     transfers
   }
-  console.log(props);
+  console.log('props: ',props);
+
+  const test = [1,2,3]
 
   return (
     <BrowserRouter>
@@ -55,9 +57,8 @@ export default function App() {
           <Navbar />
           <Routes>
             <Route path="/transactions/:transactionId" element={<TransactionDetail />} />
-            {/* <Route path="/" element={<Home />} render={() => (<h3>hiiiii</h3>)} /> */}
-            <Home {...props} />
-
+            <Route path="/" element={<Home {...props} />}  />
+            {/* <Home {...props} /> */}
 
             {/* <Route path="/" element={<Home />} transactions={transactions} transfers={transfers} /> */}
           </Routes>

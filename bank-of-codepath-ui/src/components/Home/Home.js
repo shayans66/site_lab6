@@ -3,7 +3,7 @@ import BankActivity from "../BankActivity/BankActivity"
 import "./Home.css"
 
 // export default function Home(props) {
-//   console.log(props);
+//   console.log('homeprops: ',props);
 //   return (
 //     <div className="Home">
 //       <AddTransaction />
@@ -13,7 +13,7 @@ import "./Home.css"
 // }
 
 export default function Home({ transactions, transfers }) {
-  console.log(transactions);
+  console.log('proptrans: ', transactions);
   return (
     <div className="Home">
       <AddTransaction />
