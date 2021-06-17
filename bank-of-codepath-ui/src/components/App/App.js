@@ -12,13 +12,14 @@ export default function App() {
 
   const [isFetching, setIsFetching] = useState(true)
   const [error, setError] = useState('')
-  const [filterInputValue, setFilter] = useState('')
+  const [filterInputValue, setFilterInputValue] = useState('')
   const [transactions, setTransactions] = useState([])
   const [transfers, setTransfers] = useState([])
 
   function addTransaction(newTrans){
     setTransactions((oldT) => ({...oldT, newTrans}))
   }
+  
 
   useEffect(
     () => {
@@ -64,7 +65,7 @@ export default function App() {
     <BrowserRouter>
       <div className="App">
 
-          <Navbar />
+          <Navbar {...props}/>
           <Routes>
             <Route path="/transactions/:transactionId" element={<TransactionDetail />} />
             <Route path="/" element={<Home {...props} />}  />

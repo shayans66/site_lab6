@@ -1,6 +1,9 @@
 import "./FilterInput.css"
 
-export default function FilterInput() {
+export default function FilterInput({ filterInputValue }) {
+
+  
+
   return (
     <div className="FilterInput">
       <i className="material-icons">search</i>
